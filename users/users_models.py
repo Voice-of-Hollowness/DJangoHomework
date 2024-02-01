@@ -1,5 +1,5 @@
 from django.db import models
-from banks_models import Bank
+from banks.banks_models import Bank
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)

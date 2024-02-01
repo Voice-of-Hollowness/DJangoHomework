@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Bank List</h2>
+  <ul>
+    {% for bank in banks %}
+      <li><a href="{% url 'bank_detail' bank.id %}">{{ bank.first_name }} {{ bank.last_name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

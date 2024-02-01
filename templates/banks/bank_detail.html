@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Bank Detail</h2>
+  <p>ID: {{ bank.id }}</p>
+  <p>Name: {{ bank.bank_name }}</p>
+  <p>Email: {{ bank.swift_bic}}</p>
+
+
+  <h3>Bank's Users</h3>
+  <ul>
+    {% for user in banks.user.all %}
+      <li>{{ user.first_name }}{{user.last_name}} ({{ user.email }})</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
