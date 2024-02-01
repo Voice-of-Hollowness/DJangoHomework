@@ -1,11 +1,15 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .users_models import User
 from banks.banks_models import Bank
+from .forms import UserForm
 
-def user_list(request):
-    users = User.objects.all()
-    return render(request, 'users/user_list.html', {'users': users})
+def add_users(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('user_detail', user.id)
+    else:
+        form = UserForm()
 
-def user_detail(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    return render(request, 'users/user_detail.html', {'user': user})
+    return render(request, 'users/add_users.html', {'form': form})
